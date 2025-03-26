@@ -6,7 +6,7 @@
 /*   By: urabex <urabex@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 15:30:11 by urabex            #+#    #+#             */
-/*   Updated: 2025/03/26 15:50:39 by urabex           ###   ########.fr       */
+/*   Updated: 2025/03/26 16:17:05 by urabex           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,24 @@ class Array {
         T *_array;
 };
 
-template <class T>
+template <typename T>
 Array<T>::Array() {
 	_array = new T[0];
 	_size = 0;
 }
 
-template<class T>
+template<typename T>
 Array<T>::Array(unsigned int size) {
 	this->_array = new T[size];
 	_size = size;
 }
 
-template<class T>
+template<typename T>
 Array<T>::~Array(void) {
 	delete [] this->_array;
 }
 
-template<class T>
+template<typename T>
 Array<T>::Array(const Array<T> &copy) {
 	std::cout << "copy constractor" << std::endl;
 	this->_size = copy._size;
@@ -58,7 +58,7 @@ Array<T>::Array(const Array<T> &copy) {
 	*this = copy;
 }
 
-template<class T>
+template<typename T>
 Array<T> &Array<T>::operator=(const Array<T> &copy) {
 	std::cout << "= operator" << std::endl;
 	if (this != &copy) {
@@ -70,19 +70,19 @@ Array<T> &Array<T>::operator=(const Array<T> &copy) {
 	return *this;
 }
 
-template<class T>
+template<typename T>
 T &Array<T>::operator [](unsigned int i) {
 	if (i >= _size) 
         throw std::out_of_range("Index out of range");
     return _array[i];
 }
 
-template<class T>
+template<typename T>
 unsigned int Array<T>::size(void) const {
 	return this->_size;
 }
 
-template<class T>
+template<typename T>
 void Array<T>::display_array() const {
 	for (unsigned int i = 0; i < this->_size; i++)
 		std::cout << i << "番目： " << _array[i] << std::endl;
