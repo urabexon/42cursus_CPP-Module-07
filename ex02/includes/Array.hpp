@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: urabex <urabex@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hirokiurabe <hirokiurabe@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 15:30:11 by urabex            #+#    #+#             */
-/*   Updated: 2025/03/26 16:17:05 by urabex           ###   ########.fr       */
+/*   Updated: 2025/03/27 18:02:09 by hirokiurabe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class Array {
 	    ~Array();
         Array<T>& operator=(Array<T> const &copy);
         T& operator[](unsigned int i);
+		const T& operator[](unsigned int i) const;
 	    void         display_array() const;
 	    unsigned int size() const;
 
@@ -41,7 +42,7 @@ Array<T>::Array() {
 
 template<typename T>
 Array<T>::Array(unsigned int size) {
-	this->_array = new T[size];
+	this->_array = new T[size]();
 	_size = size;
 }
 
@@ -63,7 +64,8 @@ Array<T> &Array<T>::operator=(const Array<T> &copy) {
 	std::cout << "= operator" << std::endl;
 	if (this != &copy) {
 		this->_size = copy._size;
-		this->_array = new T[this->_size];
+		delete [] this->_array;
+		this->_array = new T[this->_size]();
 		for (unsigned int i = 0; i < this->_size; i++)
 			this->_array[i] = copy._array[i];
 	}
@@ -72,7 +74,14 @@ Array<T> &Array<T>::operator=(const Array<T> &copy) {
 
 template<typename T>
 T &Array<T>::operator [](unsigned int i) {
-	if (i >= _size) 
+	if (i >= _size)
+        throw std::out_of_range("Index out of range");
+    return _array[i];
+}
+
+template<typename T>
+const T &Array<T>::operator [](unsigned int i) const {
+	if (i >= _size)
         throw std::out_of_range("Index out of range");
     return _array[i];
 }
