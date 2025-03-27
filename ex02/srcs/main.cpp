@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: urabex <urabex@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hurabe <hurabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 15:30:13 by urabex            #+#    #+#             */
-/*   Updated: 2025/03/26 15:53:24 by urabex           ###   ########.fr       */
+/*   Updated: 2025/03/27 18:34:45 by hurabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ int main(int, char**)
             return 1;
         }
     }
+
+    // const対応チェック
+    const Array<int>& constNumbers = numbers;
+    std::cout << "[const check] constNumbers[0] = " << constNumbers[0] << std::endl;
+    
     try {
         numbers[-2] = 0;
     }
