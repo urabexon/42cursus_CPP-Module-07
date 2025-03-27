@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: urabex <urabex@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hirokiurabe <hirokiurabe@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 14:59:38 by urabex            #+#    #+#             */
-/*   Updated: 2025/03/26 15:17:29 by urabex           ###   ########.fr       */
+/*   Updated: 2025/03/27 17:38:44 by hirokiurabe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@
 
 template <typename T>
 void    iter(T *array, size_t length, void (*f)(T&)) {
+    for (size_t i = 0; i < length; i++)
+        f(array[i]);
+}
+
+// constでも対応させるようにする
+template <typename T>
+void    iter(const T *array, size_t length, void (*f)(const T&)) {
     for (size_t i = 0; i < length; i++)
         f(array[i]);
 }
